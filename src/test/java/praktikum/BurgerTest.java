@@ -218,4 +218,21 @@ public class BurgerTest {
         assertTrue("Чек должен содержать правильную общую цену",
                 receipt.contains("Price: 225.0"));
     }
+
+    @Test
+    public void testMoveIngredient() {
+        burger.addIngredient(mockIngredient1);
+        burger.addIngredient(mockIngredient2);
+        burger.addIngredient(mockIngredient3);
+
+        burger.moveIngredient(0, 2);
+
+        assertEquals("Количество ингредиентов должно остаться 3", 3, burger.ingredients.size());
+        assertEquals("Второй ингредиент должен стать первым",
+                mockIngredient2, burger.ingredients.get(0));
+        assertEquals("Третий ингредиент должен стать вторым",
+                mockIngredient3, burger.ingredients.get(1));
+        assertEquals("Первый ингредиент должен стать третьим",
+                mockIngredient1, burger.ingredients.get(2));
+    }
 }
